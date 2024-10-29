@@ -1,0 +1,178 @@
+[
+  {
+    "article": {
+      "abc_classification": "C",
+      "articleNumber": 100101,
+      "purchasePrice": 90,
+      "minOrder": 30,
+      "name": "Auspuff",
+      "salesPrice": 120,
+      "fixOrderCost": 70,
+      "discount": [
+        {
+          "level": 1,
+          "minQuantity": 70,
+          "purchasePrice": 80
+        },
+        {
+          "level": 2,
+          "minQuantity": 150,
+          "purchasePrice": 70
+        }
+      ],
+      "delivery": [
+        {
+          "duration": 3,
+          "price": 20
+        },
+        {
+          "duration": 1,
+          "price": 45
+        }
+      ]
+    },
+    "averageConsumption": 30,
+    "pallet_count_processes": [
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "pastConsumption": [
+      30
+    ]
+  },
+  {
+    "article": {
+      "abc_classification": "B",
+      "articleNumber": 100102,
+      "minOrder": 20,
+      "name": "Bremsscheibe",
+      "purchasePrice": 110,
+      "salesPrice": 155,
+      "fixOrderCost": 70,
+      "discount": [
+        {
+          "level": 1,
+          "minQuantity": 70,
+          "purchasePrice": 105
+        },
+        {
+          "level": 2,
+          "minQuantity": 135,
+          "purchasePrice": 95
+        }
+      ],
+      "delivery": [
+        {
+          "duration": 3,
+          "price": 20
+        },
+        {
+          "duration": 2,
+          "price": 45
+        }
+      ]
+    },
+    "averageConsumption": 50,
+    "pallet_count_processes": [
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "pastConsumption": [
+      50
+    ]
+  },
+  {
+    "article": {
+      "abc_classification": "C",
+      "articleNumber": 100103,
+      "minOrder": 30,
+      "name": "Rückleuchte",
+      "purchasePrice": 180,
+      "salesPrice": 225,
+      "fixOrderCost": 80,
+      "discount": [
+        {
+          "level": 1,
+          "minQuantity": 75,
+          "purchasePrice": 165
+        },
+        {
+          "level": 2,
+          "minQuantity": 140,
+          "purchasePrice": 150
+        }
+      ],
+      "delivery": [
+        {
+          "duration": 3,
+          "price": 20
+        },
+        {
+          "duration": 1,
+          "price": 45
+        }
+      ]
+    },
+    "averageConsumption": 80,
+    "pallet_count_processes": [
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "pastConsumption": [
+      80
+    ]
+  },
+  {
+    "article": {
+      "abc_classification": "A",
+      "articleNumber": 100104,
+      "minOrder": 20,
+      "name": "Stossdämpfer",
+      "purchasePrice": 250,
+      "salesPrice": 325,
+      "fixOrderCost": 100,
+      "discount": [
+        {
+          "level": 1,
+          "minQuantity": 70,
+          "purchasePrice": 235
+        },
+        {
+          "level": 2,
+          "minQuantity": 135,
+          "purchasePrice": 220
+        }
+      ],
+      "delivery": [
+        {
+          "duration": 3,
+          "price": 20
+        },
+        {
+          "duration": 1,
+          "price": 45
+        }
+      ]
+    },
+    "averageConsumption": 100,
+    "pallet_count_processes": [
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "pastConsumption": [
+      100
+    ]
+  }
+]

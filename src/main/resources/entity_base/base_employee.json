@@ -1,0 +1,223 @@
+[
+  {
+    "employee": {
+      "age": 40,
+      "contractType": 0,
+      "employmentRound": 8,
+      "endRound": 1000,
+      "name": "Hanna Friedemann",
+      "gender": true
+    },
+    "motivation": 82,
+    "process": 0,
+    "qualification": 7,
+    "salary": 170,
+    "qmRound": 0,
+    "fpRound": 0,
+    "secRound": 0
+  },
+  {
+    "employee": {
+      "age": 32,
+      "contractType": 0,
+      "employmentRound": 1,
+      "endRound": 1000,
+      "name": "Conrad Anger",
+      "gender": false
+    },
+    "motivation": 82,
+    "process": 1,
+    "qualification": 1,
+    "salary": 125,
+    "qmRound": 0,
+    "fpRound": 0,
+    "secRound": 0
+  },
+  {
+    "employee": {
+      "age": 32,
+      "contractType": 0,
+      "employmentRound": 1,
+      "endRound": 1000,
+      "name": "Volker Dissel",
+      "gender": false
+    },
+    "motivation": 82,
+    "process": 1,
+    "qualification": 4,
+    "salary": 110,
+    "qmRound": 0,
+    "fpRound": 0,
+    "secRound": 0
+  },
+  {
+    "employee": {
+      "age": 32,
+      "contractType": 0,
+      "employmentRound": 1,
+      "endRound": 1000,
+      "name": "Jonas Kaufmann",
+      "gender": false
+    },
+    "motivation": 82,
+    "process": 1,
+    "qualification": 1,
+    "salary": 125,
+    "qmRound": 0,
+    "fpRound": 0,
+    "secRound": 0
+  },
+  {
+    "employee": {
+      "age": 32,
+      "contractType": 0,
+      "employmentRound": 1,
+      "endRound": 1000,
+      "name": "Beate Milke",
+      "gender": true
+    },
+    "motivation": 82,
+    "process": 2,
+    "qualification": 1,
+    "salary": 125,
+    "qmRound": 0,
+    "fpRound": 0,
+    "secRound": 0
+  },
+  {
+    "employee": {
+      "age": 52,
+      "contractType": 0,
+      "employmentRound": 1,
+      "endRound": 1000,
+      "name": "Heiner Groß",
+      "gender": false
+    },
+    "motivation": 82,
+    "process": 3,
+    "qualification": 0,
+    "salary": 85,
+    "qmRound": 0,
+    "fpRound": 0,
+    "secRound": 0
+  },
+  {
+    "employee": {
+      "age": 32,
+      "contractType": 2,
+      "employmentRound": 11,
+      "endRound": 13,
+      "name": "Markus Prinz",
+      "gender": false
+    },
+    "motivation": 100,
+    "process": 0,
+    "qualification": 5,
+    "salary": 150,
+    "qmRound": 0,
+    "fpRound": 0,
+    "secRound": 0
+  },
+  {
+    "employee": {
+      "age": 16,
+      "contractType": 2,
+      "employmentRound": 11,
+      "endRound": 13,
+      "name": "Karin Richter",
+      "gender": true
+    },
+    "motivation": 79,
+    "process": 1,
+    "qualification": 0,
+    "salary": 85,
+    "qmRound": 0,
+    "fpRound": 0,
+    "secRound": 0
+  },
+  {
+    "employee": {
+      "age": 32,
+      "contractType": 2,
+      "employmentRound": 11,
+      "endRound": 13,
+      "name": "Rüdiger Opitz",
+      "gender": false
+    },
+    "motivation": 84,
+    "process": 2,
+    "qualification": 1,
+    "salary": 125,
+    "qmRound": 0,
+    "fpRound": 0,
+    "secRound": 0
+  },
+  {
+    "employee": {
+      "age": 22,
+      "contractType": 2,
+      "employmentRound": 4,
+      "endRound": 11,
+      "name": "Svenja Rademacher",
+      "gender": true
+    },
+    "motivation": 82,
+    "process": 2,
+    "qualification": 1,
+    "salary": 125,
+    "qmRound": 0,
+    "fpRound": 0,
+    "secRound": 0
+  },
+  {
+    "employee": {
+      "age": 44,
+      "contractType": 2,
+      "employmentRound": 4,
+      "endRound": 12,
+      "name": "Sieglinde Ost",
+      "gender": true
+    },
+    "motivation": 82,
+    "process": 3,
+    "qualification": 3,
+    "salary": 145,
+    "qmRound": 0,
+    "fpRound": 0,
+    "secRound": 0
+  },
+  {
+    "employee": {
+      "age": 39,
+      "contractType": 2,
+      "employmentRound": 4,
+      "endRound": 13,
+      "name": "Dieter Willman",
+      "gender": false
+    },
+    "motivation": 85,
+    "process": 4,
+    "qualification": 1,
+    "salary": 125,
+    "qmRound": 0,
+    "fpRound": 0,
+    "secRound": 0
+  },
+  {
+    "employee": {
+      "age": 28,
+      "contractType": 0,
+      "employmentRound": 12,
+      "endRound": 1000,
+      "name": "Tim Engel",
+      "gender": false
+    },
+    "motivation": 85,
+    "process": 4,
+    "qualification": 7,
+    "salary": 170,
+    "qmRound": 0,
+    "fpRound": 0,
+    "secRound": 0
+  }
+]

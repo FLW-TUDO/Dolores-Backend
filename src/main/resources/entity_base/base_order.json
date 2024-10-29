@@ -1,0 +1,74 @@
+[
+  {
+    "deliveryRound": 11,
+    "deliveryWishRound": 11,
+    "quantity": 250,
+    "deliveredQuantity": 249,
+    "orderRound": 7,
+    "realPurchasePrice": 220,
+    "articleNumber": 100104,
+    "orderNumber": 335827,
+    "fixCosts": 100,
+    "deliveryCosts": 20
+  },
+  {
+    "deliveryRound": 11,
+    "deliveryWishRound": 11,
+    "quantity": 150,
+    "deliveredQuantity": 148,
+    "orderRound": 7,
+    "realPurchasePrice": 150,
+    "articleNumber": 100103,
+    "orderNumber": 655268,
+    "fixCosts": 80,
+    "deliveryCosts": 20
+  },
+  {
+    "deliveryRound": 12,
+    "deliveryWishRound": 12,
+    "quantity": 140,
+    "deliveredQuantity": 139,
+    "orderRound": 8,
+    "realPurchasePrice": 80,
+    "articleNumber": 100101,
+    "orderNumber": 524337,
+    "fixCosts": 70,
+    "deliveryCosts": 20
+  },
+  {
+    "deliveryRound": 11,
+    "deliveryWishRound": 11,
+    "quantity": 150,
+    "deliveredQuantity": 148,
+    "orderRound": 8,
+    "realPurchasePrice": 95,
+    "articleNumber": 100102,
+    "orderNumber": 376634,
+    "fixCosts": 70,
+    "deliveryCosts": 45
+  },
+  {
+    "deliveryRound": 12,
+    "deliveryWishRound": 12,
+    "quantity": 220,
+    "deliveredQuantity": 218,
+    "orderRound": 8,
+    "realPurchasePrice": 150,
+    "articleNumber": 100103,
+    "orderNumber": 764885,
+    "fixCosts": 80,
+    "deliveryCosts": 20
+  },
+  {
+    "deliveryRound": 13,
+    "deliveryWishRound": 13,
+    "quantity": 200,
+    "deliveredQuantity": 200,
+    "orderRound": 9,
+    "realPurchasePrice": 220,
+    "articleNumber": 100104,
+    "orderNumber": 170707,
+    "fixCosts": 100,
+    "deliveryCosts": 20
+  }
+]

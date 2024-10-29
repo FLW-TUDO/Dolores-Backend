@@ -1,0 +1,416 @@
+[
+  {
+    "articleNumber": "100101",
+    "quantity": 2,
+    "demandRound": 11,
+    "remainingQuantity": 2
+  },
+  {
+    "articleNumber": "100101",
+    "quantity": 4,
+    "demandRound": 11,
+    "remainingQuantity": 4
+  },
+  {
+    "articleNumber": "100101",
+    "quantity": 5,
+    "demandRound": 11,
+    "remainingQuantity": 5
+  },
+  {
+    "articleNumber": "100101",
+    "quantity": 2,
+    "demandRound": 11,
+    "remainingQuantity": 2
+  },
+  {
+    "articleNumber": "100101",
+    "quantity": 5,
+    "demandRound": 11,
+    "remainingQuantity": 5
+  },
+  {
+    "articleNumber": "100101",
+    "quantity": 5,
+    "demandRound": 11,
+    "remainingQuantity": 5
+  },
+  {
+    "articleNumber": "100101",
+    "quantity": 4,
+    "demandRound": 11,
+    "remainingQuantity": 4
+  },
+  {
+    "articleNumber": "100102",
+    "quantity": 5,
+    "demandRound": 11,
+    "remainingQuantity": 5
+  },
+  {
+    "articleNumber": "100102",
+    "quantity": 2,
+    "demandRound": 11,
+    "remainingQuantity": 2
+  },
+  {
+    "articleNumber": "100102",
+    "quantity": 5,
+    "demandRound": 11,
+    "remainingQuantity": 5
+  },
+  {
+    "articleNumber": "100102",
+    "quantity": 5,
+    "demandRound": 11,
+    "remainingQuantity": 5
+  },
+  {
+    "articleNumber": "100102",
+    "quantity": 4,
+    "demandRound": 11,
+    "remainingQuantity": 4
+  },
+  {
+    "articleNumber": "100102",
+    "quantity": 4,
+    "demandRound": 11,
+    "remainingQuantity": 4
+  },
+  {
+    "articleNumber": "100102",
+    "quantity": 5,
+    "demandRound": 11,
+    "remainingQuantity": 5
+  },
+  {
+    "articleNumber": "100102",
+    "quantity": 2,
+    "demandRound": 11,
+    "remainingQuantity": 2
+  },
+  {
+    "articleNumber": "100102",
+    "quantity": 4,
+    "demandRound": 11,
+    "remainingQuantity": 4
+  },
+  {
+    "articleNumber": "100102",
+    "quantity": 4,
+    "demandRound": 11,
+    "remainingQuantity": 4
+  },
+  {
+    "articleNumber": "100102",
+    "quantity": 2,
+    "demandRound": 11,
+    "remainingQuantity": 2
+  },
+  {
+    "articleNumber": "100102",
+    "quantity": 5,
+    "demandRound": 11,
+    "remainingQuantity": 5
+  },
+  {
+    "articleNumber": "100102",
+    "quantity": 2,
+    "demandRound": 11,
+    "remainingQuantity": 2
+  },
+  {
+    "articleNumber": "100102",
+    "quantity": 3,
+    "demandRound": 11,
+    "remainingQuantity": 3
+  },
+  {
+    "articleNumber": "100102",
+    "quantity": 5,
+    "demandRound": 11,
+    "remainingQuantity": 5
+  },
+  {
+    "articleNumber": "100102",
+    "quantity": 5,
+    "demandRound": 11,
+    "remainingQuantity": 5
+  },
+  {
+    "articleNumber": "100102",
+    "quantity": 4,
+    "demandRound": 11,
+    "remainingQuantity": 4
+  },
+  {
+    "articleNumber": "100102",
+    "quantity": 4,
+    "demandRound": 11,
+    "remainingQuantity": 4
+  },
+  {
+    "articleNumber": "100102",
+    "quantity": 5,
+    "demandRound": 11,
+    "remainingQuantity": 5
+  },
+  {
+    "articleNumber": "100102",
+    "quantity": 2,
+    "demandRound": 11,
+    "remainingQuantity": 2
+  },
+  {
+    "articleNumber": "100103",
+    "quantity": 4,
+    "demandRound": 11,
+    "remainingQuantity": 4
+  },
+  {
+    "articleNumber": "100103",
+    "quantity": 5,
+    "demandRound": 11,
+    "remainingQuantity": 5
+  },
+  {
+    "articleNumber": "100103",
+    "quantity": 2,
+    "demandRound": 11,
+    "remainingQuantity": 2
+  },
+  {
+    "articleNumber": "100103",
+    "quantity": 3,
+    "demandRound": 11,
+    "remainingQuantity": 3
+  },
+  {
+    "articleNumber": "100103",
+    "quantity": 5,
+    "demandRound": 11,
+    "remainingQuantity": 5
+  },
+  {
+    "articleNumber": "100103",
+    "quantity": 4,
+    "demandRound": 11,
+    "remainingQuantity": 4
+  },
+  {
+    "articleNumber": "100103",
+    "quantity": 2,
+    "demandRound": 11,
+    "remainingQuantity": 2
+  },
+  {
+    "articleNumber": "100103",
+    "quantity": 4,
+    "demandRound": 11,
+    "remainingQuantity": 4
+  },
+  {
+    "articleNumber": "100103",
+    "quantity": 4,
+    "demandRound": 11,
+    "remainingQuantity": 4
+  },
+  {
+    "articleNumber": "100103",
+    "quantity": 3,
+    "demandRound": 11,
+    "remainingQuantity": 3
+  },
+  {
+    "articleNumber": "100103",
+    "quantity": 2,
+    "demandRound": 11,
+    "remainingQuantity": 2
+  },
+  {
+    "articleNumber": "100103",
+    "quantity": 3,
+    "demandRound": 11,
+    "remainingQuantity": 3
+  },
+  {
+    "articleNumber": "100103",
+    "quantity": 2,
+    "demandRound": 11,
+    "remainingQuantity": 2
+  },
+  {
+    "articleNumber": "100104",
+    "quantity": 4,
+    "demandRound": 11,
+    "remainingQuantity": 4
+  },
+  {
+    "articleNumber": "100104",
+    "quantity": 5,
+    "demandRound": 11,
+    "remainingQuantity": 5
+  },
+  {
+    "articleNumber": "100104",
+    "quantity": 4,
+    "demandRound": 11,
+    "remainingQuantity": 4
+  },
+  {
+    "articleNumber": "100104",
+    "quantity": 4,
+    "demandRound": 11,
+    "remainingQuantity": 4
+  },
+  {
+    "articleNumber": "100104",
+    "quantity": 2,
+    "demandRound": 11,
+    "remainingQuantity": 2
+  },
+  {
+    "articleNumber": "100104",
+    "quantity": 5,
+    "demandRound": 11,
+    "remainingQuantity": 5
+  },
+  {
+    "articleNumber": "100104",
+    "quantity": 1,
+    "demandRound": 11,
+    "remainingQuantity": 1
+  },
+  {
+    "articleNumber": "100104",
+    "quantity": 2,
+    "demandRound": 11,
+    "remainingQuantity": 2
+  },
+  {
+    "articleNumber": "100104",
+    "quantity": 4,
+    "demandRound": 11,
+    "remainingQuantity": 4
+  },
+  {
+    "articleNumber": "100104",
+    "quantity": 5,
+    "demandRound": 11,
+    "remainingQuantity": 5
+  },
+  {
+    "articleNumber": "100104",
+    "quantity": 4,
+    "demandRound": 11,
+    "remainingQuantity": 4
+  },
+  {
+    "articleNumber": "100104",
+    "quantity": 5,
+    "demandRound": 11,
+    "remainingQuantity": 5
+  },
+  {
+    "articleNumber": "100104",
+    "quantity": 4,
+    "demandRound": 11,
+    "remainingQuantity": 4
+  },
+  {
+    "articleNumber": "100104",
+    "quantity": 5,
+    "demandRound": 11,
+    "remainingQuantity": 5
+  },
+  {
+    "articleNumber": "100104",
+    "quantity": 5,
+    "demandRound": 11,
+    "remainingQuantity": 5
+  },
+  {
+    "articleNumber": "100104",
+    "quantity": 5,
+    "demandRound": 11,
+    "remainingQuantity": 5
+  },
+  {
+    "articleNumber": "100104",
+    "quantity": 5,
+    "demandRound": 11,
+    "remainingQuantity": 5
+  },
+  {
+    "articleNumber": "100104",
+    "quantity": 1,
+    "demandRound": 11,
+    "remainingQuantity": 1
+  },
+  {
+    "articleNumber": "100104",
+    "quantity": 4,
+    "demandRound": 11,
+    "remainingQuantity": 4
+  },
+  {
+    "articleNumber": "100104",
+    "quantity": 5,
+    "demandRound": 11,
+    "remainingQuantity": 5
+  },
+  {
+    "articleNumber": "100104",
+    "quantity": 5,
+    "demandRound": 11,
+    "remainingQuantity": 5
+  },
+  {
+    "articleNumber": "100104",
+    "quantity": 2,
+    "demandRound": 11,
+    "remainingQuantity": 2
+  },
+  {
+    "articleNumber": "100104",
+    "quantity": 4,
+    "demandRound": 11,
+    "remainingQuantity": 4
+  },
+  {
+    "articleNumber": "100104",
+    "quantity": 4,
+    "demandRound": 11,
+    "remainingQuantity": 4
+  },
+  {
+    "articleNumber": "100104",
+    "quantity": 2,
+    "demandRound": 11,
+    "remainingQuantity": 2
+  },
+  {
+    "articleNumber": "100104",
+    "quantity": 4,
+    "demandRound": 11,
+    "remainingQuantity": 4
+  },
+  {
+    "articleNumber": "100104",
+    "quantity": 2,
+    "demandRound": 11,
+    "remainingQuantity": 2
+  },
+  {
+    "articleNumber": "100104",
+    "quantity": 4,
+    "demandRound": 11,
+    "remainingQuantity": 4
+  },
+  {
+    "articleNumber": "100104",
+    "quantity": 2,
+    "demandRound": 11,
+    "remainingQuantity": 2
+  }
+]

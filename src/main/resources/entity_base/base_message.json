@@ -1,0 +1,22 @@
+[
+  {
+    "messageDE": "Der Mitarbeiter Markus Prinz beginnt in dieser Runde.",
+    "messageEN": "The employee  Markus Prinz beginns in this round.",
+    "roundNumber": 11
+  },
+  {
+    "messageDE": "Der Mitarbeiter Rüdiger Opitz beginnt in dieser Runde.",
+    "messageEN": "The employee  Rüdiger Opitz beginns in this round.",
+    "roundNumber": 11
+  },
+  {
+    "messageDE": "Die Mitarbeiterin Karin Richter beginnt in dieser Runde.",
+    "messageEN": "The employee Karin Richter beginns in this round.",
+    "roundNumber": 11
+  },
+  {
+    "messageDE": "Die Mitarbeiterin Svenja Rademacher verlässt Ihr Unternehmen zum Ende dieser Runde.",
+    "messageEN": "The employee Svenja Rademacher is leaving your company at the end of this round.",
+    "roundNumber": 11
+  }
+]

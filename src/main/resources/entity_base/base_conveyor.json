@@ -1,0 +1,117 @@
+[
+  {
+    "conveyor": {
+      "name": "4-Rad Diesel-Gabelstapler (mit Filter)",
+      "maintenanceCost": 90,
+      "capacity": 720,
+      "needsForkliftPermit": true,
+      "price": 85000,
+      "speed": 5.2,
+      "timeToDelivery": 2,
+      "timeToRepair": 8000,
+      "useInStorage": true,
+      "conveyorId": 2
+    },
+    "condition": 82,
+    "currentValue": 55633.0,
+    "overhaul": false,
+    "maintenanceEnabled": false,
+    "overhaul_cost": 900,
+    "roundBought": 1,
+    "process": 0,
+    "status": 0,
+    "sold": false
+  },
+  {
+    "conveyor": {
+      "name": "3-Rad Elektro-Gablestapler",
+      "maintenanceCost": 50,
+      "capacity": 720,
+      "needsForkliftPermit": true,
+      "price": 45000,
+      "speed": 4.4,
+      "timeToDelivery": 1,
+      "timeToRepair": 4000,
+      "useInStorage": true,
+      "conveyorId": 1
+    },
+    "condition": 82,
+    "currentValue": 30600,
+    "overhaul": false,
+    "maintenanceEnabled": true,
+    "overhaul_cost": 500,
+    "roundBought": 1,
+    "process": 2,
+    "status": 0,
+    "sold": false
+  },
+  {
+    "conveyor": {
+      "name": "4-Rad Gas-Gabelstapler",
+      "maintenanceCost": 70,
+      "capacity": 720,
+      "needsForkliftPermit": true,
+      "price": 65000,
+      "speed": 5.3,
+      "timeToDelivery": 3,
+      "timeToRepair": 6000,
+      "useInStorage": true,
+      "conveyorId": 5
+    },
+    "condition": 82,
+    "currentValue": 44200.5,
+    "overhaul": false,
+    "maintenanceEnabled": true,
+    "overhaul_cost": 700,
+    "roundBought": 1,
+    "process": 2,
+    "status": 0,
+    "sold": false
+  },
+  {
+    "conveyor": {
+      "name": "Elektrohandhubwagen",
+      "maintenanceCost": 20,
+      "capacity": 1440,
+      "needsForkliftPermit": false,
+      "price": 6000,
+      "speed": 1.6,
+      "timeToDelivery": 2,
+      "timeToRepair": 2000,
+      "useInStorage": false,
+      "conveyorId": 6
+    },
+    "condition": 82,
+    "currentValue": 4182.0,
+    "overhaul": false,
+    "maintenanceEnabled": false,
+    "overhaul_cost": 700,
+    "roundBought": 1,
+    "process": 2,
+    "status": 0,
+    "sold": false
+  },
+  {
+    "conveyor": {
+      "name": "4-Rad Diesel-Gabelstapler (mit Filter)",
+      "maintenanceCost": 90,
+      "capacity": 720,
+      "needsForkliftPermit": true,
+      "price": 85000,
+      "speed": 5.2,
+      "timeToDelivery": 2,
+      "timeToRepair": 8000,
+      "useInStorage": true,
+      "conveyorId": 2
+    },
+    "condition": 82,
+    "currentValue": 57800.0,
+    "overhaul": false,
+    "maintenanceEnabled": true,
+    "overhaul_cost": 900,
+    "roundBought": 1,
+    "process": 4,
+    "status": 0,
+    "sold": false
+  }
+]
