@@ -16,7 +16,12 @@ class WebsocketConfig : WebSocketMessageBrokerConfigurer {
     }
 
     override fun registerStompEndpoints(registry: StompEndpointRegistry) {
-        registry.addEndpoint("/websocket").setAllowedOrigins("https://flw-businessgame.de", "http://localhost:8080")
+        registry.addEndpoint("/websocket").setAllowedOrigins(
+            "https://flw-businessgame.de",
+            "http://localhost:8080",
+            "http://log-bg.mb.tu-dortmund.de",
+            "https://log-bg.mb.tu-dortmund.de"
+        )
             .withSockJS()
     }
 

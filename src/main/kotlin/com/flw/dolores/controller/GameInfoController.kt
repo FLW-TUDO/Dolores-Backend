@@ -22,7 +22,7 @@ class GameInfoController(
     private val gameStateRepository: GameStateRepository,
     private val playerRepository: PlayerRepository,
     private val websocket: WebsocketService,
-    private val cacheManager: CacheManager
+    cacheManager: CacheManager
 ) {
     private val gameInfoFactory: GameInfoFactory =
         GameInfoFactory(gameInfoRepository, gameStateRepository, cacheManager)
@@ -143,14 +143,192 @@ class GameInfoController(
     @GetMapping("/{gameId}/export")
     fun export(@PathVariable gameId: ObjectId): ResponseEntity<GameInfoExportMessage> {
         val gameStates = gameStateRepository.findAllByGameInfoId(gameId).sortedBy { it.roundNumber }
-        var message = "\uFEFFRunde;Kontostand;Kundenzufriedenheit;Zeitpunkt;\n"
+        var message =
+            "\uFEFFRound;Balance;Customer Satisfaction;Current Stock;;;;Customer_Jobs;;;;Delayed_Jobs;;;;" +
+                    "Current_Orders;;;;Pallets_process_processed;Pallets_process_unprocessed;;;;;;;;;;;;;" +
+                    "Employee_process_with_forklift_licence;Employee_process_without_forklift_licence;Employee_process_total;;;;;;;;;" +
+                    "Conveyor_process_with_forklift_licence;Conveyor_process_without_forklift_licence;Conveyor_process_total;;;;;;;" +
+                    "Workload_employee_process;;;;;Workload_conveyor_process;;;;;" +
+                    "Storage_incoming_capacity_distr;Storage_out_cap_distr;Timestamp;\n"
+        message += ";;;Article 1;Article 2;Article 3;Article 4;Article 1;Article 2;Article 3;Article 4;Article 1;Article 2;Article 3;Article 4;" +
+                "Article 1;Article 2;Article 3;Article 4;Unloading;Unloading;Receipt of goods;Receipt of goods;Storing;Storing;Storage;Storage;Shipping;Shipping;Outgoing goods inspection;Outgoing goods inspection;Shipping;Shipping;" +
+                "Unloading;;;Receipt of goods;Storing;;;Outgoing goods inspection;Shipping;;;Unloading;;;Storing;;;Shipping;;;" +
+                "Unloading;Receipt of goods;Storing;Outgoing goods inspection;Shipping;Unloading;Receipt of goods;Storing;Outgoing goods inspection;Shipping;\n"
+
+
         for (gameState in gameStates) {
-            val time = gameState.updatedAt.toString().split('T')
             message += "${gameState.roundNumber};"
             message += "${gameState.roundValues.accountBalance}€;"
             message += "${gameState.roundValues.customer_satisfaction}%;"
+
+            val time = gameState.updatedAt.toString().split('T')
             message += "${time[0]};"
             message += "${time[1]};\n"
+
+
+            for (dynamic in gameState.articleDynamics) {
+                message += "${dynamic.currentStock};"
+            }
+
+            val demand: MutableList<Int> = MutableList(4) { 0 }
+            val delayed: MutableList<Int> = MutableList(4) { 0 }
+
+            for (job in gameState.customerJobs) {
+                val articleId = job.articleNumber - 100101
+
+                if (job.demandRound == gameState.roundNumber) {
+                    demand[articleId] += job.quantity
+                } else {
+                    delayed[articleId] += job.quantity
+                }
+            }
+
+
+            for (quantity in demand) {
+                message += "${quantity};"
+            }
+
+            for (quantity in delayed) {
+                message += "${quantity};"
+            }
+
+            val orders: MutableList<Int> = MutableList(4) { 0 }
+
+            for (order in gameState.orders) {
+                if (order.deliveryRound == gameState.roundNumber) {
+                    val articleId = order.articleNumber - 100101
+                    orders[articleId] += order.deliveredQuantity
+                }
+            }
+
+
+            for (quantity in orders) {
+                message += "${quantity};"
+            }
+
+            val palletsTransported = gameState.roundValues.pallets_transported_process
+            val palletsNotTransported = gameState.roundValues.pallets_not_transported_process
+
+            message += "${palletsTransported[0]};${palletsNotTransported[0]};"
+            message += "${palletsTransported[1]};${palletsNotTransported[1]};"
+            message += "${gameState.roundValues.pallets_transported_la_in};${gameState.roundValues.not_transported_pallets_la_in};"
+            message += "${palletsTransported[2]};${palletsNotTransported[2]};"
+            message += "${gameState.roundValues.pallets_transported_la_out};${gameState.roundValues.not_transported_pallets_la_out};"
+            message += "${palletsTransported[3]};${palletsNotTransported[3]};"
+            message += "${palletsTransported[4]};${palletsNotTransported[4]};"
+
+            var employeeENFKL = 0
+            var employeeENNFKL = 0
+            var conveyorENFKL = 0
+            var conveyorENNFKL = 0
+
+            var employeeWV = 0
+
+            var employeeSTFLK = 0
+            var employeeSTNFKL = 0
+            var conveyorSTFKL = 0
+            var conveyorSTNFKL = 0
+
+            var employeeWK = 0
+
+            var employeeVLFKL = 0
+            var employeeVLNFKL = 0
+            var conveyorVLFKL = 0
+            var conveyorVLNFKL = 0
+
+            for (conveyor in gameState.conveyorDynamics) {
+                if (gameState.roundNumber < conveyor.roundBought)
+                    when (conveyor.process) {
+                        Process.UNLOADING -> {
+                            if (conveyor.conveyor.needsForkliftPermit) {
+                                conveyorENFKL += 1
+                            } else {
+                                conveyorENNFKL += 1
+                            }
+                        }
+
+                        Process.STORAGE -> {
+                            if (conveyor.conveyor.needsForkliftPermit) {
+                                conveyorSTFKL += 1
+                            } else {
+                                conveyorSTNFKL += 1
+                            }
+                        }
+
+                        Process.LOADING -> {
+                            if (conveyor.conveyor.needsForkliftPermit) {
+                                conveyorVLFKL += 1
+                            } else {
+                                conveyorVLNFKL += 1
+                            }
+                        }
+
+                        else -> {}
+                    }
+            }
+
+            for (employee in gameState.employeeDynamics) {
+                if (gameState.roundNumber < employee.employee.employmentRound
+                    || gameState.roundNumber >= employee.employee.endRound
+                )
+                    when (employee.process) {
+                        Process.UNLOADING -> {
+                            if (employee.qualification % 2 == 1) {
+                                employeeENFKL += 1
+                            } else {
+                                employeeENNFKL += 1
+                            }
+                        }
+
+                        Process.COLLECTION -> {
+                            employeeWV += 1
+                        }
+
+                        Process.STORAGE -> {
+                            if (employee.qualification % 2 == 1) {
+                                employeeSTFLK += 1
+                            } else {
+                                employeeSTNFKL += 1
+                            }
+                        }
+
+                        Process.CONTROL -> {
+                            employeeWK += 1
+                        }
+
+                        Process.LOADING -> {
+                            if (employee.qualification % 2 == 1) {
+                                employeeVLFKL += 1
+                            } else {
+                                employeeVLNFKL += 1
+                            }
+                        }
+
+                        else -> {}
+                    }
+            }
+
+            message += "${employeeENFKL};${employeeENNFKL};${employeeENFKL + employeeENNFKL};"
+            message += "${employeeWV};"
+            message += "${employeeSTFLK};${employeeSTNFKL};${employeeSTFLK + employeeSTNFKL};"
+            message += "${employeeWK};"
+            message += "${employeeVLFKL};${employeeVLNFKL};${employeeVLFKL + employeeVLNFKL};"
+
+            message += "${conveyorENFKL};${conveyorENNFKL};${conveyorENFKL + conveyorENNFKL};"
+            message += "${conveyorSTFKL};${conveyorSTNFKL};${employeeSTFLK + conveyorSTNFKL};"
+            message += "${conveyorVLFKL};${conveyorVLNFKL};${conveyorVLFKL + conveyorVLNFKL};"
+
+
+            for (workload in gameState.roundValues.workload_employee) {
+                message += "${workload}%;"
+            }
+
+            for (workload in gameState.roundValues.workload_conveyor) {
+                message += "${workload}%;"
+            }
+
+            message += "${gameState.roundValues.storage_factor * 100}%;"
+            message += "${(1 - gameState.roundValues.storage_factor) * 100}%;\n"
         }
         return ResponseEntity.ok(
             GameInfoExportMessage(

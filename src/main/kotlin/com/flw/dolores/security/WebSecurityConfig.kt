@@ -59,7 +59,11 @@ class WebSecurityConfig(
                 "https://flw-businessgame.de",
                 "http://flw-businessgame.de",
                 "wss://flw-businessgame.de",
-                "ws://flw-businessgame.de"
+                "ws://flw-businessgame.de",
+                "https://log-bg.mb.tu-dortmund.de",
+                "http://log-bg.mb.tu-dortmund.de",
+                "wss://log-bg.mb.tu-dortmund.de",
+                "ws://log-bg.mb.tu-dortmund.de",
             )
         configuration.allowedMethods = listOf("OPTIONS", "GET", "POST", "PUT", "DELETE", "PATCH")
         configuration.allowedHeaders = listOf("*")
