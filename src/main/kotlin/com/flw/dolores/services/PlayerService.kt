@@ -10,8 +10,8 @@ import org.springframework.stereotype.Component
 @Component
 class PlayerService(
     private val playerRepository: PlayerRepository,
+    private val gameInfoRepository: GameInfoRepository,
     private val encoder: PasswordHashEncoder,
-    private val gameInfoRepository: GameInfoRepository
 ) {
 
     fun findById(playerId: ObjectId): Player {
