@@ -13,9 +13,9 @@ import java.time.LocalDateTime
 class GameInfoFactory(
     private val gameInfoRepository: GameInfoRepository,
     private val gameStateRepository: GameStateRepository,
-    private val cacheManager: CacheManager
+    private val cacheManager: CacheManager,
+    private val gameStateFactory: GameStateFactory
 ) {
-    private val gameStateFactory: GameStateFactory = GameStateFactory(gameStateRepository)
 
     fun createNewGame(gameName: String, playerId: ObjectId): GameInfo {
         var gameInfo = GameInfo(
