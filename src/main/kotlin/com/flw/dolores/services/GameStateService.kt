@@ -12,7 +12,7 @@ import java.time.LocalDateTime
 class GameStateService(
     private val gameStateRepository: GameStateRepository,
     private val gameStateFactory: GameStateFactory,
-    private val websocket: WebsocketService,
+    private val websocketService: WebsocketService,
     private val cacheManager: CacheManager
 ) {
     fun updateGameStateAndCache(gameState: GameState) {
@@ -20,7 +20,7 @@ class GameStateService(
         gameStateRepository.save(gameState)
         val cache = cacheManager.getCache("gameStates")
         cache?.put(gameState.id, gameState)
-        websocket.sendMessage(
+        websocketService.sendMessage(
             type = "state",
             gameId = gameState.gameInfoId,
             updatedAt = gameState.updatedAt
