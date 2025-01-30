@@ -1,50 +1,31 @@
 package com.flw.dolores.controller
 
 import com.flw.dolores.entities.*
-import com.flw.dolores.factory.*
-import com.flw.dolores.repositories.GameStateRepository
+import com.flw.dolores.services.GameStateService
 import org.bson.types.ObjectId
-import org.springframework.cache.CacheManager
 import org.springframework.cache.annotation.CacheEvict
 import org.springframework.cache.annotation.Cacheable
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
-import java.time.LocalDateTime
 
 @RestController
 @RequestMapping("/api/v1/gameState")
 class GameStateController(
-    private val gameStateRepository: GameStateRepository,
-    private val websocket: WebsocketService,
-    private val cacheManager: CacheManager
+    private val gameStateService: GameStateService
 ) {
-    private val orderFactory: OrderFactory = OrderFactory()
 
-    fun updateGameStateAndCache(gameState: GameState) {
-        gameState.updatedAt = LocalDateTime.now()
-        gameStateRepository.save(gameState)
-        val cache = cacheManager.getCache("gameStates")
-        cache?.put(gameState.id, ResponseEntity.ok(gameState))
-        websocket.sendMessage(
-            type = "state",
-            gameId = gameState.gameInfoId,
-            updatedAt = gameState.updatedAt
-        )
-    }
 
     @GetMapping("/{stateId}")
     @Cacheable("gameStates")
     fun getById(@PathVariable stateId: ObjectId): ResponseEntity<GameState> {
-        val gameState = gameStateRepository.findById(stateId)
+        val gameState = gameStateService.getGameStateById(stateId)
         return ResponseEntity.ok(gameState)
     }
 
     @PostMapping("/{stateId}/order")
     @CacheEvict("gameStates", key = "#stateId", beforeInvocation = true)
     fun addOrder(@PathVariable stateId: ObjectId, @RequestBody body: OrderMessage): ResponseEntity<GameState> {
-        val gameState = gameStateRepository.findById(stateId)
-        orderFactory.createOrder(gameState, body)
-        this.updateGameStateAndCache(gameState)
+        val gameState = gameStateService.addOrderToGameState(stateId, body)
         return ResponseEntity.ok(gameState)
     }
 
@@ -54,9 +35,7 @@ class GameStateController(
         @PathVariable stateId: ObjectId,
         @PathVariable orderId: ObjectId
     ): ResponseEntity<GameState> {
-        val gameState = gameStateRepository.findById(stateId)
-        orderFactory.cancelOrder(gameState, orderId)
-        this.updateGameStateAndCache(gameState)
+        val gameState = gameStateService.cancelOrderById(stateId, orderId)
         return ResponseEntity.ok(gameState)
     }
 
@@ -66,9 +45,7 @@ class GameStateController(
         @PathVariable stateId: ObjectId,
         @PathVariable employeeId: ObjectId
     ): ResponseEntity<GameState> {
-        val gameState = gameStateRepository.findById(stateId)
-        gameState.terminateEmployee(employeeId)
-        this.updateGameStateAndCache(gameState)
+        val gameState = gameStateService.terminateEmployeeById(stateId, employeeId)
         return ResponseEntity.ok(gameState)
     }
 
@@ -78,9 +55,7 @@ class GameStateController(
         @PathVariable stateId: ObjectId,
         @RequestBody body: EmployeeHireMessage
     ): ResponseEntity<GameState> {
-        val gameState = gameStateRepository.findById(stateId)
-        gameState.hireEmployee(body.employeeId, body.process, body.contractType)
-        this.updateGameStateAndCache(gameState)
+        val gameState = gameStateService.hireEmployeeById(stateId, body)
         return ResponseEntity.ok(gameState)
     }
 
@@ -90,9 +65,7 @@ class GameStateController(
         @PathVariable stateId: ObjectId,
         @RequestBody body: EmployeeTrainingMessage
     ): ResponseEntity<GameState> {
-        val gameState = gameStateRepository.findById(stateId)
-        gameState.trainEmployee(body.employeeId, body.qualification)
-        this.updateGameStateAndCache(gameState)
+        val gameState = gameStateService.trainEmployee(stateId, body)
         return ResponseEntity.ok(gameState)
     }
 
@@ -102,18 +75,14 @@ class GameStateController(
         @PathVariable stateId: ObjectId,
         @RequestBody body: EmployeeProcessMessage
     ): ResponseEntity<GameState> {
-        val gameState = gameStateRepository.findById(stateId)
-        gameState.updateEmployeeProcess(body.employeeId, body.process)
-        this.updateGameStateAndCache(gameState)
+        val gameState = gameStateService.updateEmployeeProcess(stateId, body)
         return ResponseEntity.ok(gameState)
     }
 
     @PostMapping("/{stateId}/overtime")
     @CacheEvict("gameStates", key = "#stateId", beforeInvocation = true)
     fun setOvertime(@PathVariable stateId: ObjectId, @RequestBody body: OverTimeMessage): ResponseEntity<GameState> {
-        val gameState = gameStateRepository.findById(stateId)
-        gameState.setOvertime(body.process, body.overtime)
-        this.updateGameStateAndCache(gameState)
+        val gameState = gameStateService.setOvertime(stateId, body)
         return ResponseEntity.ok(gameState)
     }
 
@@ -123,9 +92,7 @@ class GameStateController(
         @PathVariable stateId: ObjectId,
         @RequestBody body: InvestmentMessage
     ): ResponseEntity<GameState> {
-        val gameState = gameStateRepository.findById(stateId)
-        gameState.setClimateInvestment(body.climateInvestment)
-        this.updateGameStateAndCache(gameState)
+        val gameState = gameStateService.setInvestment(stateId, body)
         return ResponseEntity.ok(gameState)
     }
 
@@ -135,9 +102,7 @@ class GameStateController(
         @PathVariable stateId: ObjectId,
         @RequestBody body: ConveyorProcessMessage
     ): ResponseEntity<GameState> {
-        val gameState = gameStateRepository.findById(stateId)
-        gameState.updateConveyorProcess(body.conveyorId, body.process)
-        this.updateGameStateAndCache(gameState)
+        val gameState = gameStateService.updateConveyorProcess(stateId, body)
         return ResponseEntity.ok(gameState)
     }
 
@@ -147,9 +112,7 @@ class GameStateController(
         @PathVariable stateId: ObjectId,
         @RequestBody body: ConveyorMaintenanceMessage
     ): ResponseEntity<GameState> {
-        val gameState = gameStateRepository.findById(stateId)
-        gameState.updateConveyorMaintenance(body.conveyorId)
-        this.updateGameStateAndCache(gameState)
+        val gameState = gameStateService.updateConveyorMaintenance(stateId, body)
         return ResponseEntity.ok(gameState)
     }
 
@@ -159,9 +122,7 @@ class GameStateController(
         @PathVariable stateId: ObjectId,
         @RequestBody body: ConveyorOverhaulMessage
     ): ResponseEntity<GameState> {
-        val gameState = gameStateRepository.findById(stateId)
-        gameState.overhaulConveyor(body.conveyorId)
-        this.updateGameStateAndCache(gameState)
+        val gameState = gameStateService.overhaulConveyor(stateId, body)
         return ResponseEntity.ok(gameState)
     }
 
@@ -171,9 +132,7 @@ class GameStateController(
         @PathVariable stateId: ObjectId,
         @RequestBody body: ConveyorSellMessage
     ): ResponseEntity<GameState> {
-        val gameState = gameStateRepository.findById(stateId)
-        gameState.sellConveyor(body.conveyorId)
-        this.updateGameStateAndCache(gameState)
+        val gameState = gameStateService.sellConveyor(stateId, body)
         return ResponseEntity.ok(gameState)
     }
 
@@ -183,9 +142,7 @@ class GameStateController(
         @PathVariable stateId: ObjectId,
         @RequestBody body: ConveyorBuyMessage
     ): ResponseEntity<GameState> {
-        val gameState = gameStateRepository.findById(stateId)
-        gameState.buyConveyor(body.conveyorId)
-        this.updateGameStateAndCache(gameState)
+        val gameState = gameStateService.buyConveyor(stateId, body)
         return ResponseEntity.ok(gameState)
     }
 
@@ -195,9 +152,7 @@ class GameStateController(
         @PathVariable stateId: ObjectId,
         @RequestBody body: StorageEntranceLevelMessage
     ): ResponseEntity<GameState> {
-        val gameState = gameStateRepository.findById(stateId)
-        gameState.updateStorageEntranceLevel(body.conditionCost)
-        this.updateGameStateAndCache(gameState)
+        val gameState = gameStateService.updateStorageEntranceLevel(stateId, body)
         return ResponseEntity.ok(gameState)
     }
 
@@ -207,9 +162,7 @@ class GameStateController(
         @PathVariable stateId: ObjectId,
         @RequestBody body: ServiceUpdateMessage
     ): ResponseEntity<GameState> {
-        val gameState = gameStateRepository.findById(stateId)
-        gameState.updateServices(body.services)
-        this.updateGameStateAndCache(gameState)
+        val gameState = gameStateService.updateServices(stateId, body)
         return ResponseEntity.ok(gameState)
     }
 
@@ -219,9 +172,7 @@ class GameStateController(
         @PathVariable stateId: ObjectId,
         @RequestBody body: TechnologyUpdateMessage
     ): ResponseEntity<GameState> {
-        val gameState = gameStateRepository.findById(stateId)
-        gameState.updateTechnologies(body.technology)
-        this.updateGameStateAndCache(gameState)
+        val gameState = gameStateService.updateTechnologies(stateId, body)
         return ResponseEntity.ok(gameState)
     }
 
@@ -232,9 +183,7 @@ class GameStateController(
         @PathVariable stateId: ObjectId,
         @RequestBody body: StorageCapacityDistributionMessage
     ): ResponseEntity<GameState> {
-        val gameState = gameStateRepository.findById(stateId)
-        gameState.updateStorageCapacityDistribution(body.distribution)
-        this.updateGameStateAndCache(gameState)
+        val gameState = gameStateService.updateCapacityDistribution(stateId, body)
         return ResponseEntity.ok(gameState)
     }
 
@@ -244,9 +193,7 @@ class GameStateController(
         @PathVariable stateId: ObjectId,
         @RequestBody body: StorageControlMessage
     ): ResponseEntity<GameState> {
-        val gameState = gameStateRepository.findById(stateId)
-        gameState.updateStorageInboundControl(body.control)
-        this.updateGameStateAndCache(gameState)
+        val gameState = gameStateService.updateInboundControl(stateId, body)
         return ResponseEntity.ok(gameState)
     }
 
@@ -256,9 +203,7 @@ class GameStateController(
         @PathVariable stateId: ObjectId,
         @RequestBody body: StorageControlMessage
     ): ResponseEntity<GameState> {
-        val gameState = gameStateRepository.findById(stateId)
-        gameState.updateStorageOutboundControl(body.control)
-        this.updateGameStateAndCache(gameState)
+        val gameState = gameStateService.updateOutboundControl(stateId, body)
         return ResponseEntity.ok(gameState)
     }
 
@@ -268,9 +213,7 @@ class GameStateController(
         @PathVariable stateId: ObjectId,
         @RequestBody body: UnitSecurityDeviceUpdateMessage
     ): ResponseEntity<GameState> {
-        val gameState = gameStateRepository.findById(stateId)
-        gameState.updateUnitSecurityDevice(body.securityDevice)
-        this.updateGameStateAndCache(gameState)
+        val gameState = gameStateService.updateUnitSecurityDevices(stateId, body)
         return ResponseEntity.ok(gameState)
     }
 
@@ -280,9 +223,7 @@ class GameStateController(
         @PathVariable stateId: ObjectId,
         @RequestBody body: StorageStrategyMessage
     ): ResponseEntity<GameState> {
-        val gameState = gameStateRepository.findById(stateId)
-        gameState.updateIncomingStorageStrategy(body.strategy)
-        this.updateGameStateAndCache(gameState)
+        val gameState = gameStateService.updateIncomingStrategy(stateId, body)
         return ResponseEntity.ok(gameState)
     }
 
@@ -292,9 +233,7 @@ class GameStateController(
         @PathVariable stateId: ObjectId,
         @RequestBody body: StorageStrategyMessage
     ): ResponseEntity<GameState> {
-        val gameState = gameStateRepository.findById(stateId)
-        gameState.updateStorageStrategy(body.strategy)
-        this.updateGameStateAndCache(gameState)
+        val gameState = gameStateService.updateStorageStrategy(stateId, body)
         return ResponseEntity.ok(gameState)
     }
 
@@ -304,9 +243,7 @@ class GameStateController(
         @PathVariable stateId: ObjectId,
         @RequestBody body: StorageStrategyMessage
     ): ResponseEntity<GameState> {
-        val gameState = gameStateRepository.findById(stateId)
-        gameState.updateOutgoingStorageStrategy(body.strategy)
-        this.updateGameStateAndCache(gameState)
+        val gameState = gameStateService.updateOutboundStrategy(stateId, body)
         return ResponseEntity.ok(gameState)
     }
 
@@ -315,9 +252,7 @@ class GameStateController(
     fun initiateABCAnalysis(
         @PathVariable stateId: ObjectId
     ): ResponseEntity<GameState> {
-        val gameState = gameStateRepository.findById(stateId)
-        gameState.initiateABCAnalysis()
-        this.updateGameStateAndCache(gameState)
+        val gameState = gameStateService.initiateABCAnalysis(stateId)
         return ResponseEntity.ok(gameState)
     }
 
@@ -326,9 +261,7 @@ class GameStateController(
     fun initiateABCZoning(
         @PathVariable stateId: ObjectId
     ): ResponseEntity<GameState> {
-        val gameState = gameStateRepository.findById(stateId)
-        gameState.initiateABCZoning()
-        this.updateGameStateAndCache(gameState)
+        val gameState = gameStateService.initiateABCZoning(stateId)
         return ResponseEntity.ok(gameState)
     }
 }

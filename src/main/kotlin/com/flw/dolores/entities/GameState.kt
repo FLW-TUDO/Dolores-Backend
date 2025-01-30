@@ -148,6 +148,19 @@ class GameState(
         }
     }
 
+    fun cancelOrder(orderId: ObjectId) {
+        try {
+            val order = this.orders.first { order -> order.id == orderId }
+            val timeToDelivery = order.deliveryRound - this.roundNumber
+            val cost =
+                GameValues.order_cancel_cost[timeToDelivery] * order.quantity * order.realPurchasePrice + order.fixCosts
+            this.roundValues.accountBalance -= cost
+            this.orders.remove(order)
+        } catch (exception: Exception) {
+            println("Current order $orderId could not be found! $exception")
+        }
+    }
+
     fun hireEmployee(employeeId: ObjectId, processID: Int, contractType: Int) {
         val roundNumber = this.roundNumber
         val employeeDynamic = this.employeeStore.first { it.employee.id == employeeId }

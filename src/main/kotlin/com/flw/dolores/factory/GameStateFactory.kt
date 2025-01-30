@@ -1,18 +1,17 @@
 package com.flw.dolores.factory
 
 import com.flw.dolores.calculator.*
-import com.flw.dolores.entities.GameInfo
-import com.flw.dolores.entities.GameState
-import com.flw.dolores.entities.RoundValues
+import com.flw.dolores.entities.*
 import com.flw.dolores.repositories.GameStateRepository
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import org.bson.types.ObjectId
+import org.springframework.stereotype.Component
 import java.time.LocalDateTime
 
 internal inline fun <reified T> Gson.fromJson(json: String) = fromJson<T>(json, object : TypeToken<T>() {}.type)
 
-
+@Component
 class GameStateFactory(
     private val repository: GameStateRepository
 ) {
@@ -85,5 +84,9 @@ class GameStateFactory(
 
     fun getPreviousRound(gameInfoId: ObjectId, roundNumber: Int): GameState {
         return repository.findByGameInfoIdAndRoundNumber(gameInfoId, roundNumber)
+    }
+
+    fun createOrder(order: OrderMessage): Order {
+        return orderFactory.createOrder(order)
     }
 }

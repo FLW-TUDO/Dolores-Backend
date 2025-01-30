@@ -69,7 +69,7 @@ data class OkResponseMessage(
     val message: String
 )
 
-data class GameBalanceAndSatisfactionMessage(
+data class GameStatisticsMessage(
     val balances: MutableList<Double>,
     val satisfaction: MutableList<Double>,
     val labels: MutableList<Int>

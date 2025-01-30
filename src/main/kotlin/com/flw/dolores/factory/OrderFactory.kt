@@ -1,7 +1,5 @@
 package com.flw.dolores.factory
 
-import com.flw.dolores.entities.GameState
-import com.flw.dolores.entities.GameValues
 import com.flw.dolores.entities.Order
 import com.flw.dolores.entities.OrderMessage
 import com.google.gson.Gson
@@ -40,9 +38,9 @@ class OrderFactory {
         return orders
     }
 
-    fun createOrder(gameState: GameState, order: OrderMessage) {
+    fun createOrder(order: OrderMessage): Order {
         val deliveredQuantity = order.deliveredQuantity - Random.nextInt(5)
-        val newOrder = Order(
+        return Order(
             orderNumber = order.orderNumber,
             orderRound = order.orderRound,
             deliveryRound = order.deliveryRound,
@@ -54,20 +52,5 @@ class OrderFactory {
             fixCosts = order.fixCosts,
             deliveryCosts = order.deliveryCosts,
         )
-        gameState.orders.add(newOrder)
     }
-
-    fun cancelOrder(gameState: GameState, orderId: ObjectId) {
-        try {
-            val order = gameState.orders.first { order -> order.id == orderId }
-            val timeToDelivery = order.deliveryRound - gameState.roundNumber
-            val cost =
-                GameValues.order_cancel_cost[timeToDelivery] * order.quantity * order.realPurchasePrice + order.fixCosts
-            gameState.roundValues.accountBalance -= cost
-            gameState.orders.remove(order)
-        } catch (exception: Exception) {
-            println("Current order $orderId could not be found! $exception")
-        }
-    }
-
 }

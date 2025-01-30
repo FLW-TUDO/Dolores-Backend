@@ -5,6 +5,7 @@ import com.auth0.jwt.JWTVerifier
 import com.auth0.jwt.algorithms.Algorithm
 import com.auth0.jwt.exceptions.TokenExpiredException
 import com.auth0.jwt.interfaces.DecodedJWT
+import com.flw.dolores.entities.JWTValidResponse
 import org.springframework.http.HttpHeaders.AUTHORIZATION
 import org.springframework.http.HttpStatus.FORBIDDEN
 import org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR
@@ -64,16 +65,15 @@ class AuthorizationFilter(
     }
 
     companion object {
-        fun authenticateToken(token: String, secretKey: String): Boolean {
+        fun authenticateToken(token: String, secretKey: String): JWTValidResponse {
             return try {
-                // TODO replace secret with import
                 val algorithm: Algorithm =
                     Algorithm.HMAC512(secretKey)
                 val verifier: JWTVerifier = JWT.require(algorithm).build()
                 verifier.verify(token.substring("Bearer ".length))
-                true
+                JWTValidResponse(status = true)
             } catch (exception: Exception) {
-                false
+                JWTValidResponse(status = false)
             }
         }
     }

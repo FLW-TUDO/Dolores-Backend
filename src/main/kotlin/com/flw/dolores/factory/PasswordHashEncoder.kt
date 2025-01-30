@@ -2,7 +2,9 @@ package com.flw.dolores.factory
 
 import org.springframework.security.crypto.bcrypt.BCrypt
 import org.springframework.security.crypto.password.PasswordEncoder
+import org.springframework.stereotype.Component
 
+@Component
 class PasswordHashEncoder : PasswordEncoder {
     override fun encode(rawPassword: CharSequence): String {
         return BCrypt.hashpw(rawPassword.toString(), BCrypt.gensalt(12))

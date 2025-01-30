@@ -6,8 +6,10 @@ import com.flw.dolores.repositories.GameStateRepository
 import org.bson.types.ObjectId
 import org.springframework.cache.CacheManager
 import org.springframework.http.ResponseEntity
+import org.springframework.stereotype.Component
 import java.time.LocalDateTime
 
+@Component
 class GameInfoFactory(
     private val gameInfoRepository: GameInfoRepository,
     private val gameStateRepository: GameStateRepository,
